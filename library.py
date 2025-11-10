@@ -54,4 +54,9 @@ class Library:
             print("The requested book was not found")
         print(result)
 
+my_library = Library()
+my_book1 = demo_b.Book("The Adventures of Huckleberry Finn", "mark twain", "b290")
+my_book2 = demo_b.Book("War and Peace", "Leo Tolstoy", "b291")
+my_user1 = demo_u.User("oliver", "u305")
+my_user2 = demo_u.User("james", "u306")
 
