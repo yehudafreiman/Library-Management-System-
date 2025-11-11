@@ -7,13 +7,25 @@ class Library:
         self.list_of_books = []
         self.list_of_users = []
 
+        # read books from json file and loud to local list
+        with open("books.json", "r") as file:
+            content = json.load(file)
+        old_book = Book(content["title"], content["author"], content["isbn"])
+        self.list_of_books.append(old_book)
+
+        # read users from json file and loud to local list
+        with open("users.json", "r") as file:
+            content = json.load(file)
+        old_user = User(content["name"], content["id"])
+        self.list_of_users.append(old_user)
+
     def add_book(self, book:Book) -> str:
         self.list_of_books.append(book)
 
         # write to json file as json
-        book_dict = {"title":book.title, "author":book.author, "isbn":book.isbn} # converse to dict
-        json_book = json.dumps(book_dict, indent=4) # converse to json
-        with open("books.json", "a") as file: # write to json
+        book_dict = {"title":book.title, "author":book.author, "isbn":book.isbn} 
+        json_book = json.dumps(book_dict, indent=4) 
+        with open("books.json", "r") as file: 
             file.write(json_book)
 
         return "-> The book successfully added to library"
@@ -22,9 +34,9 @@ class Library:
         self.list_of_users.append(user)
 
         # write to json file as json
-        user_dict = {"name": user.name, "id": user.id} # converse to dict
-        json_user = json.dumps(user_dict, indent=4) # converse to json
-        with open("users.json", "a") as file: # write to json
+        user_dict = {"name": user.name, "id": user.id} 
+        json_user = json.dumps(user_dict, indent=4) 
+        with open("users.json", "r") as file: 
             file.write(json_user)
 
         return "-> The user successfully added to library"
